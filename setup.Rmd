@@ -1,0 +1,103 @@
+---
+title: "Setup"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+##Downloading R and Rstudio
+
+**Mac Users**
+
+To Install R
+
+Open an internet browser and go to www.r-project.org.
+Click the "download R" link in the middle of the page.
+Select a CRAN location (a mirror site) and click the corresponding link.
+Click on the "Download R for (Mac) OS X" link at the top of the page.
+Click on the file containing the latest version of R under "Files."
+Save the .pkg file, double-click it to open, and follow the installation instructions.
+Now that R is installed, you need to download and install RStudio.
+
+To Install RStudio
+
+Go to www.rstudio.com and click on the "Download RStudio" button.
+Click on "Download RStudio Desktop."
+Click on the version recommended for your system, or the latest Mac version, save the .dmg file on your computer, double-click it to open, and then drag and drop it to your applications folder.
+
+**Windows Users**
+
+To Install R:
+
+Open an internet browser and go to www.r-project.org.
+Click the "download R" link in the middle of the page.
+Select a CRAN location (a mirror site) and click the corresponding link.  
+Click on the "Download R for Windows" link at the top of the page.  
+Click on the "install R for the first time" link at the top of the page.
+Click "Download R for Windows" and save the executable file somewhere on your computer.  Run the .exe file and follow the installation instructions.  
+Now that R is installed, you need to download and install RStudio. 
+
+To Install RStudio
+
+Go to www.rstudio.com and click on the "Download RStudio" button.
+Click on "Download RStudio Desktop."
+Click on the version recommended for your system, or the latest Windows version, and save the executable file.  Run the .exe file and follow the installation instructions.     
+
+
+##Updating R (if you have previously installed it)
+
+The most recent R version is v 4.0.3. If you have downloaded R in the past few years, make sure you have an updated version. 
+
+**Windows Users** try using the package installr (only for Windows)
+Install and load installr: install.packages("installr") and library(installr)
+Call updateR() function. This will start the updating process of your R installation by: “finding the latest R version, downloading it, running the installer, deleting the installation file, copy and updating old packages to the new R installation.”
+From within RStudio, go to Help > Check for Updates to install newer version of RStudio (if available, optional).
+
+
+**Mac Users** you can simply download and install the newest version of R. When you restart RStudio, it will use the updated version of R.
+
+Go to https://cloud.r-project.org/bin/macosx/
+Click the link “R-4.0.3.pkg”
+When the file finishes downloading, double-click to install. You should be able to click “Next” to all dialogs to finish the installation.
+From within RStudio, go to Help > Check for Updates to install newer version of RStudio (if available, optional).
+
+
+## Installing Git
+
+I will be uploading all the labs and datasets to a GitHub repository. To access this repository locally, you should install Git (but you can also download the files, manually). Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+If there's any chance you have installed Git already, verify that and skip this step. Otherwise, find installation instructions below for your operating system.
+
+**Windows Users**
+Install [Git for Windows](https://git-for-windows.github.io/), also known as `msysgit` or "Git Bash", to get Git in addition to some other useful tools, such as the Bash shell. 
+* Note that RStudio for Windows prefers for Git to be installed below `C:/Program Files` and this appears to be the default. This implies, for example, that the Git executable on my Windows system is found at `C:/Program Files/Git/bin/git.exe`. Unless you have specific reasons to otherwise, follow this convention.
+
+**Mac Users**
+Install Git from here: <http://git-scm.com/downloads>.
+
+  * This arguably sets you up the best for the future. It will certainly get you the latest version of Git of all approaches described here.
+  * The GitHub home for the macOS installer is here: <https://github.com/timcharper/git_osx_installer>.
+    - At that link, you can find more info if something goes wrong or you are working on an old version of macOS.
+
+## Introduction to RStudio
+
+In this course we will be learning how to code in R inside the RStudio interface. You may be wondering the difference between the two. 
+
+**R** is a statistical computing language that allows you to:
+* Store data in a variety of formats
+* Perform calculations on data and variables, 
+* Build functions and applications, and 
+* Transform and graphically represent data
+
+**RStudio** is an Integrated Development Environment (IDE) for statistical computing. It is a platform for using and coding in R.
+
+Before we continue, please watch this 8 minute video introducing you to the RStudio Environment https://www.youtube.com/embed/TJmNvfhLCoI/
+
+
+## Connecting RStudio to the course's GitHub reppository
+
+File > New Project > Version Control > Git. In “Repository URL”, paste the URL of our course's GitHub repository https://github.com/aponce278/STS-115-2021
+Accept the default project directory name, e.g. myrepo, which coincides with the GitHub repo name.
+Take charge of where the Project will be saved locally. 
+Click “Create Project”.
+You should find yourself in a new local RStudio Project that represents the course's repo on GitHub. 
+
+Now, open lab 1, where you will find further instructions. In Rstudio, you can find the RDM file on the lower right panel. Double click. 

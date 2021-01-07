@@ -1,0 +1,63 @@
+---
+title: "Datasets"
+output: html_notebook
+---
+Here I will be collecting some of the datasets that you may use (or be using) for your class assignments. In the folder you will find some of the corresponding .csv files (as well as some of the ones you might have used in STS 101). These are not the only ones you may use; this is only a starting point. If you want to use or add a different dataset, please let me know via Canvas ('Discussions' tab) or email (send me the .csv file). You should decide on what dataset you are going to be using by lab #2.
+
+A good idea would be to explore public and/or open data published by different US agencies. To learn how to find this data, I would suggest you read the chapter  "Online Databases" in 
+
+Herzog, David. Data literacy: a user's guide. SAGE Publications, 2015.
+
+##1. SNAP Policy Data Sets
+
+The SNAP Policy Database provides a central data source for information on State policy options in the Supplemental Nutrition Assistance Program (SNAP). The database includes information on State-level SNAP policies relating to eligibility criteria, recertification and reporting requirements, benefit issuance methods, availability of online applications, use of biometric technology (such as fingerprinting), and coordination with other low-income assistance programs. Data are provided for all 50 States and the District of Columbia for each month from January 1996 through December 2016. The information in this database can facilitate research on factors that influence SNAP participation and on SNAP's effects on a variety of outcomes, such as health and dietary intake. For more information, see About the SNAP Policy Database.
+
+**URL**: https://www.ers.usda.gov/data-products/snap-policy-data-sets/
+
+```{r}
+#Run this code chunk to import the dataset and look at its top n rows.
+
+SNAP <- read.csv("SNAP_Policy_Database.csv", stringsAsFactors = FALSE)
+head(SNAP)
+```
+
+##2. North American Breeding Bird Survey 
+
+The BBS is a cooperative effort between the U.S. Geological Survey's Patuxent Wildlife Research Center and Environment Canada's Canadian Wildlife Service to monitor the status and trends of North American bird populations. Following a rigorous protocol, BBS data are collected by thousands of dedicated participants along thousands of randomly established roadside routes throughout the continent. Professional BBS coordinators and data managers work closely with researchers and statisticians to compile and deliver these population data and population trend analyses on more than 400 bird species, for use by conservation managers, scientists, and the general public.
+
+The BBS releases data on an annual basis. Current and past data releases are provided through the USGS’s scientific data portal called “ScienceBase” (accessible below). We also offer an “Online Retrieval System” here on the BBS website (also accessible below) that allows users to extract small amounts of data for one species, for limited time periods, and/or for small geographic extents.
+
+**URL**: https://www.pwrc.usgs.gov/BBS/PublicDataInterface/index.cfm?fuseaction=PublicDataInterface.viewPublic
+
+With this dataset you can produce the .csv file that you are interested in exploring, and push it (or send it via email) so I can upload it to our shared repository
+
+##3. Underlying Cause of Death, 1999-2019
+
+The Underlying Cause of Death database contains mortality and population counts for all U.S. counties. Data are based on death certificates for U.S. residents. Each death certificate identifies a single underlying cause of death and demographic data. The number of deaths, crude death rates or age-adjusted death rates, and 95% confidence intervals and standard errors for death rates can be obtained by place of residence (total U.S., region, state and county), age group (single-year-of age, 5-year age groups, 10-year age groups and infant age groups), race, Hispanic ethnicity, gender, year, cause-of-death (4-digit ICD-10 code or group of codes), injury intent and injury mechanism, drug/alcohol induced causes and urbanization categories. Data are also available for place of death, month and week day of death, and whether an autopsy was performed.
+
+Data Use Restrictions:
+
+The Public Health Service Act (42 U.S.C. 242m(d)) provides that the data collected by the National Center for Health Statistics (NCHS) may be used only for the purpose for which they were obtained; any effort to determine the identity of any reported cases, or to use the information for any purpose other than for health statistical reporting and analysis, is against the law. Therefore users will:
+
+* Use these data for health statistical reporting and analysis only.
+* For sub-national geography, do not present or publish death counts of 9 or fewer or death rates based on counts of nine or fewer (in figures, graphs, maps, tables, etc.).
+* Make no attempt to learn the identity of any person or establishment included in these data.
+* Make no disclosure or other use of the identity of any person or establishment discovered inadvertently and advise the NCHS Confidentiality Officer of any such discovery.
+
+**URL:** https://wonder.cdc.gov/ucd-icd10.html
+
+##4. Inpatient Prospective Payment System (IPPS) Provider Summary for All Diagnosis-Related Groups (DRG) - FY2018
+
+The Inpatient Utilization and Payment Public Use File (Inpatient PUF) provides information on inpatient discharges for Medicare fee-for-service beneficiaries. The Inpatient PUF includes information on utilization, payment (total payment and Medicare payment), and hospital-specific charges for the more than 3,000 U.S. hospitals that receive Medicare Inpatient Prospective Payment System (IPPS) payments. The PUF is organized by hospital and Medicare Severity Diagnosis Related Group (MS-DRG) and covers Fiscal Year (FY) 2018. MS-DRGs included in the PUF represent more than 7 million discharges or 76 percent of total Medicare IPPS discharges.
+
+**URL:** https://data.cms.gov/Medicare-Inpatient/Inpatient-Prospective-Payment-System-IPPS-Provider/yekz-wzdr
+
+##5. 311 Service Requests from 2010 to Present
+
+All 311 Service Requests from 2010 to present (NYC) This information is automatically updated daily.
+
+NOTE: This data does not present a full picture of 311 calls or service requests, in part because of operational and system complexities associated with remote call taking necessitated by the unprecedented volume 311 is handling during the Covid-19 crisis. The City is working to address this issue.
+
+**URL:** https://data.cms.gov/Medicare-Inpatient/Inpatient-Prospective-Payment-System-IPPS-Provider/yekz-wzdr
+
+

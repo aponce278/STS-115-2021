@@ -3,9 +3,9 @@ title: "Lab 1 - Introduction to R"
 author: " "
 date: " "
 output:
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
 editor_options:
   chunk_output_type: inline
 utput:
@@ -341,11 +341,11 @@ Finally, on the top right hand side of your RStudio screen, you will see a tab c
 
 
 
-## knitting a document and submitting it on Canvas
+##Practice (5 pts.)
 
 Before you submit this assignment, you should name it. Let's briefly practice some of the tricks that you have learned. First, create three variables: one that contains your name, another one with your email, and a last one with your age. You can do so by filling in the blanks ("_____") below. These variables should be of different classes, two of them will be "character" and one "numeric" (Hint: you can use the class() function to check the class of a variable). Finally, print the three variables.
 
-```{r eval=FALSE}
+```{r}
 
 name <- ________
 ________ <- ________
@@ -360,5 +360,18 @@ ________
 ________
 
 ```
+**BONUS (0.3 pts)**
 
-Congratulations! with this, we conclude today's lab. 
+You are almost done! The last thing that I want you to do is to transform this notebook into a sharable document, which can be easily uploaded and opened on Canvas. If you complete this question, you will receive an extra 0.3 points. 
+
+To do so, we are going to use the rmarkdown package to transform your R notebook into a PDF file. 
+First, click the “Knit” icon that appears on the Rstudio UI above your file in the scripts editor. 
+A drop down menu will let you select the type of output that you want. For this assignment, please select "Knit to PDF" (but you could also transform your R notebook file into an HTML, PDF, or Word document).
+When you click the button, Rstudio (via the) will duplicate your text in the new file format. rmarkdown will use the formatting instructions that you provided with markdown syntax (in the case of this lab, automatically generated) Once the file is rendered, RStudio will show you a preview of the new output and save the output file in your working directory.
+
+If this is not the case, it may be that there is an error in the code. To correct such error, please fill the blanks in the former question (name, email, age). If you want to learn more about knitting, I suggest watching this video: https://www.youtube.com/watch?v=GZKJDp8r7Uc
+
+
+## Submitting your dcoument on Canvas
+
+Congratulations! With this, we conclude this week's lab. Now, it is time to upload your documents and submit them through Canvas. First, make sure you saved your R notebook (cntrl + S / or 'File' > 'Save'). Now go to our STS 115 Canvas site. Then, go to the "Assignments" tab. There you will see "Lab #1" (5 pts). Upload your RMD file. You can 'add another file.' If you knitted and exported your notebook as a PDF, please upload the PDF file to receive your extra bonus (0.3 pts).
