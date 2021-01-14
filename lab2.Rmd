@@ -1,23 +1,22 @@
 ---
 title: "Lab 2 - Research Plan and Dataset Hopping"
-author: "Type your name here"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
+author: 'Name'
+date: 'Date'
 output:
-  html_notebook:
-    toc: yes
-    toc_depth: 3
-    toc_float: yes
-  pdf_document:
-    toc: yes
-    toc_depth: '3'
-    self_contained: no
+  pdf_document: default
+  html_document:
+    df_print: paged
+editor_options:
+  chunk_output_type: inline
+utput:
   html_document:
     df_print: paged
     toc: yes
     toc_depth: '3'
-    self_contained: no
-editor_options:
-  chunk_output_type: inline
+  html_notebook:
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
 ---
 
 ## Instructions and Overview

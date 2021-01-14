@@ -3,9 +3,9 @@ title: "Lab 1 - Introduction to R"
 author: " "
 date: " "
 output:
+  pdf_document: default
   html_document:
     df_print: paged
-  pdf_document: default
 editor_options:
   chunk_output_type: inline
 utput:
@@ -21,7 +21,7 @@ utput:
 
 ## Instructions and Overview
 
-If you've reached this point in the lab, congratulations! You have successfully cloned your GitHub repo for this class into RStudio. At the end of the assignment, I will explain how to commit your changes and push them back to GitHub, where they will be accessible to me for grading.
+If you've reached this point in the lab, congratulations! You have successfully cloned your GitHub repo for this class into RStudio. 
 
 As we move through this notebook, we will begin to get acquainted with R Markdown - the format in which these notebooks are written -, the themes of the course, and the statistical programming language R. Collectively, the eight labs in this course will give you an opportunity to engage with the course themes, data manipulation, and data presentation directly in R notebooks. Each week, we will take pieces of our labs to build upon this dashboard. 
 
@@ -369,7 +369,7 @@ First, click the “Knit” icon that appears on the Rstudio UI above your file 
 A drop down menu will let you select the type of output that you want. For this assignment, please select "Knit to PDF" (but you could also transform your R notebook file into an HTML, PDF, or Word document).
 When you click the button, Rstudio (via the) will duplicate your text in the new file format. rmarkdown will use the formatting instructions that you provided with markdown syntax (in the case of this lab, automatically generated) Once the file is rendered, RStudio will show you a preview of the new output and save the output file in your working directory.
 
-If this is not the case, it may be that there is an error in the code. To correct such error, please fill the blanks in the former question (name, email, age). If you want to learn more about knitting, I suggest watching this video: https://www.youtube.com/watch?v=GZKJDp8r7Uc
+If this is not the case, it may be that there is an error in the code. To correct such error, please fill the blanks in the former question (name, email, age). If you want to learn more about knitting, I suggest watching this [video](https://www.youtube.com/watch?v=GZKJDp8r7Uc).
 
 
 ## Submitting your dcoument on Canvas
