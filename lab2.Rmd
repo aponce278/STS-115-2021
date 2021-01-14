@@ -1,0 +1,297 @@
+---
+title: "Lab 2 - Research Plan and Dataset Hopping"
+author: "Type your name here"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_notebook:
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+    self_contained: no
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: '3'
+    self_contained: no
+editor_options:
+  chunk_output_type: inline
+---
+
+## Instructions and Overview
+
+In this lab, you will begin to think about your quarter-long data exploration and outline a plan for your future data research project. In the past few sessions, we have been brainstorming about possible research projects and datasets that you may want to explore. In this lab, you will select a research topic and identify a few datasets you may be studying throughout the quarter. Remember, this will be the project and dataset that you will be presenting as part of your research presentation (10 pts) and final presentation (24 pts). 
+
+To think about a quarter-long project may sound overwhelming. Do not worry. In this lab we are just documenting what we currently know about a topic that we are interested in knowing more about, what questions we have regarding the topic, and identifying possible data sets that inform our exploration. At the end of the course, we will come back to this lab to document how our understanding of the topic has changed following several weeks of working with data. 
+
+In some sections of this document, you will need to fill in responses to questions. In the final section, you will need to fill a table. Be sure to read the document carefully so that you know where you will need to respond.
+
+## Research process and plan
+
+We will begin by thinking about your possible research interests. Please respond to the questions below in full sentences. At this point, you do not need to do any external research on your topic. You are simply documenting what you currently know about a topic you are interested in. 
+
+In this class, we will focus on the social dimensions of data. I would prefer it if you selected a research topic centered on social realities-for example: environmental ollution in the bay area, health coverage access in California, or the effects of a policy in the US between 1990 and 2010.  If you are having trouble thinking about a topic, please do come to our lab session (wed. 14), where we will be able to discuss your own ideas.
+
+### What topic am I investigating? 
+
+(Just one phrase here is fine.) 
+
+```{r eval=FALSE}
+Fill response here. 
+```
+
+
+### Why do you think this topic is relevant to explore via a data exploration? What do you think that data can say that we don't currently know about it? 
+
+At this point, you may speculate. 
+
+```{r eval=FALSE}
+Fill response here. 
+```
+
+Now that you have selected a topic, let's try to turn it into a research question.  Empirical research questions are questions that an analyst can assess evidence to address. They are specific to a particular time and place. Examples of research questions include:
+
+* Do United States hospitals have enough beds to accommodate the expected influx in Covid-19 cases during winter 2021? 
+* In 2020, how many people in the United States have insurance that covers therapy visits?
+
+Now think about your topic. What questions could you ask about your topic that would help you think about it in a comprehensive or critical manner? Be sure that your question is one that you can assess evidence to address, and that it is specific to a certain time and place. 
+
+### What empirical research questions might I address in my research? 
+
+List at least two.
+
+```{r eval=FALSE}
+Fill response here. 
+```
+
+
+## Project Contexts
+
+Now, we are going to begin mapping out some of the project contexts. By this I mean that we are going to put your research interest into temporal, geographic, and social-cultural perspective. The eight questions below encourage you to draw out these contexts. Note that there is not necessarily a wrong way to answer these questions, and you absolutely do not need to answer them comprehensively. If we tried to respond to them "fully," we'd probably go on writing forever! Instead I'd like you select just a few things that come to mind when you consider your topic in relation to the questions and datasets. Having some of these contexts written out will help you as you are searching for data. For each question below, please respond in 1-2+ complete sentences. 
+
+### What are some key events, dates, or years relevant to this topic? This might be a long span of time or a specific event. 
+
+```{r eval=FALSE}
+Fill response here. 
+```
+
+### What are some key sites, locations, or geographies relevant to this topic? This might be a large boundary like a country or a small community. 
+
+```{r eval=FALSE}
+Fill response here. 
+```
+
+### What social groups are impacted by this topic, and how?
+
+```{r eval=FALSE}
+Fill response here. 
+```
+
+### How is the environment implicated in this topic?
+
+```{r eval=FALSE}
+Fill response here. 
+```
+
+### How is the economy implicated in this topic?
+
+```{r eval=FALSE}
+Fill response here. 
+```
+
+### How are politics implicated in this topic?
+
+```{r eval=FALSE}
+Fill response here. 
+```
+
+### How are you implicated in this topic?
+
+```{r eval=FALSE}
+Fill response here. 
+```
+
+### What are some of the most common ways different social groups talk about this topic?
+
+```{r eval=FALSE}
+Fill response here. 
+```
+
+## Data, datasets, and dataset hopping
+
+Now that you have some ideas about your future research project, it is time to think about data and its availability. I will begin by expanding on where to find data that is publicly available, what this entails, then I will explain some of the key notions about datasets, and we will end this lab by selecting a few datasets that you may use for your project. 
+
+### Background on Open Government Data
+
+One way to start looking for data is exploring the Open Government Data that is currently available. In May 2009, Data.gov - a web portal for accessing US government datasets - was launched by then federal Chief Information Officer Vivek Kundra. Following this, in December 2009, then US President Barack Obama signed the Open Government Data Directive, requiring that all federal agencies post at least 3 high value datasets on data.gov within 45 day. A few years later in May 2013, Pres. Obama signed an Executive Order to: "M"ak[e] Open and Machine Readable the New Default for Government Information." 
+
+The Order required that the US Office of Management and Budgeting, in collaboration with the CIO and CTO, put out and oversee an Open Data Policy. This policy required the following:
+
+* Data needs to be published in machine-readable formats
+* Data needs to be licensed openly
+* Data needs to be described with metadata
+
+Note that these are only requirements for data produced through the federal government. Cities, states, and counties have their own open data programs, policies, and laws, which are sometimes more and sometimes less stringent than the federal policy. However, most open data policies, in some way, deal with the three issues listed above - machine-readability, licensing, and metadata.
+
+Let's talk about what each of these issues entail...
+
+### Machine-readable
+Machine-readable data are data that can be readily processed by a computer. Typically machine-readable data (Which is not the only form of data, as we discussed on Tuesday) are structured in ways that many different computer applications can recognize. There are different degrees of machine-readability of digital data:
+
+* Data stored in tables in **PDFs (files with extension .pdf)** are perhaps some of the least machine-readable data that we will encounter in our data research. This is because data in tables in PDFs are not structured in such a way that computer software can easily reference and operate on specific values. 
+* Data stored in **Excel (files with extension .xls)** files are a bit more machine-readable. We can import data stored into an Excel file into Excel, and the software will recognize how the data are structured, aggregate values into separate cells, and thus present it to us in a way that we can operate on it. However, to open Excel, we need access to Microsoft products, which we have to pay for. This means that the Excel file is not stored in an open format.
+* Data stored in **Comma Separated Value (files with extension .csv)** files are more machine-readable than data stored in Excel files. This is because data in CSV files are structured in an open format - or a format that is not dependent on proprietary software. A CSV file is a text file structured so that each line in the file designates a record and various fields for describing that record are separated by commas. If we were to open a CSV file in a basic text editor, it would look something like this:
+
+Name, Age, Birth Month, Time on Phone
+
+Sally, 23, 3, 42
+
+Julie, 40, 2, 98
+
+Mark, 14, 8, 120
+
+However, if we were to open the same file in Excel, each value would be separated into its own cell. A CSV file is software independent. As a standardized way of displaying data, just about any computer application that displays data is prepared to read a CSV file and format it for display. 
+
+### Licensed Openly
+
+Just because something is available on the Web does not necessarily mean that we are free to download and use it as we please. Historically, different government agencies would allow access to certain datasets for a fee that would help to cover the costs of running public data programs. (Oftentimes, we hear this referred to as data being behind a "paywall.") With the US Open Government Directive, all data *produced* by any federal US agency would default to the public domain. When data is in the public domain, they are owned by the the public. The data are not subject to any copyright or intellectual property law and can be accessed, modified, reproduced, and distributed without any restrictions. 
+
+Data *acquired* by any federal US agency needed to be given an open data license that met the following criteria:
+
+1. The license allowed for data reuse and modifications.
+2. The license could not restrict any form of redistribution of the data.
+3. The license could not discriminate any person or group from these rights. 
+
+There are a few global licenses that government agencies can apply to data that meet this criteria. One such license is the Creative Commons Universal Public Domain License (CC0 1.0). Another open license that meets the criteria listed above is the Open Data Commons Public Domain and Dedication License (PDDL). You can read more about the specifics of this license [here](https://opendatacommons.org/licenses/pddl/1.0/). See [this](https://data.boston.gov/dataset/city-hall-electricity-usage) dataset of City Hall Electricity Usage in Boston, which has been licensed with the PDDL.
+
+Different cities and states throughout the US will have different laws about the degree to which data should be openly licensed. In most open government data portals, you will be able to discern how data licensed in its administrative metadata - to which we will turn next. 
+
+### Metadata
+
+Metadata is data about data. There are two kinds of metadata:
+
+1. Administrative metadata: data about how a dataset is/should be managed
+2. Descriptive metadata: data about what is inside a dataset
+
+Administrative metadata will answer questions such as: 
+
+* Who created this data?
+* When did they create it?
+* When was it last updated?
+* How often will it be updated?
+* Who published it?
+* Who owns the data, and how is it licensed?
+
+Check out the administrative metadata available for [this](https://data.baltimorecity.gov/datasets/911-police-calls-for-service/data) open dataset detailing Baltimore 911 Police Calls for Service. 
+
+Under the About this Dataset section on the page, you'll see a number of fields describing the data - how frequently the data is updated, who published the data, who to contact regarding the data, who has rights to use and distribute the data, when the data was created, and when the data was last updated. All of this metadata provides us with information about how this data is managed; in other words, it provides administrative metadata. Why is administrative metadata so important? Here are just a few reasons:
+
+* If we run into errors in the data or if we have questions regarding the data, we need to know who to contact.
+* We need to know how often it is updated to get a sense of its timeliness. Data that is rarely updated may be less relevant than they were when first published.
+* We need to know how it is licensed so that we understand whether we have permission to use it, to distribute it, or to publish it.
+* We need to know who created it in order to understand what perspective the data represents. 
+* Just like when we cite quotes in a paper, we need to cite data when we reference it. All of this information communicates to us how to cite the data. 
+
+As an example of why this is important, consider [this](https://www.denvergov.org/opendata/dataset/city-and-county-of-denver-traffic-accidents) dataset documenting traffic accidents in Denver. There is a long preamble to the data, indicating important information about how the dataset gets updated. Every time an accident occurs it is entered into the dataset. However, when first reported, the Denver Police Department likely does not have all of the information about the accident. That information becomes available through investigations, and as it becomes available, the entries associated with that accident in the dataset are updated. The following disclaimer on the data portal provides important administrative metadata:
+
+> "Incidents that occurred at least 30 days ago tend to be the most accurate, although records are returned for incidents that happened yesterday. For motor vehicle crashes that are still under investigation and involve a serious bodily or fatal injury, some attributes will appear as, "UNDER INVESTIGATION." This is to help ensure that any court proceedings related to these incidents are not inadvertently hindered. Once the investigation is closed, all of the incident's attributes will be visible. This dynamic nature of motor vehicle crash data means that content provided here today will probably differ from content provided a week from now. Likewise, content provided on this site will probably differ somewhat from crime statistics published elsewhere by the City and County of Denver, even though they draw from the same database."
+
+While administrative metadata characterizes how the data is managed, descriptive metadata tells us about the content of a dataset. With descriptive metadata, we should be able to answer questions such as:
+
+* How many columns are in the dataset, and how many rows?
+* What does each row represent?
+* What does each column name refer to?
+* What are the possible values in each column?
+* How was the data collected, and what standards of measurement were used?
+* What assumptions were made when the data was collected, and how will those assumptions be presented in the data?
+
+As we continue our labs we are going to keep coming back to a key point: any data point or measurement that we produce will always be dependent on how we define *what* we are seeing, counting or measuring. That is: how we transform experience into standard classifications that convey information. 
+ 
+If we are going to count the number of cars on the road, we have to ask: What counts as a car? What will I include in the count and what will I exclude? If we were going to measure the height of a chair, we have to ask: According to what units am I going to measure the height? The numbers that we produce will be shaped by the choices we make regarding data collection. Without documenting those choices, the values won't make much sense to others. Again, we must first define things in order to count or measure them. This is why it is so important that when we share our data, others can look up the definitions that we are using to produce our values.
+
+With this mind, descriptive metadata is often documented in what is called a **data dictionary**. Data dictionaries are tools for looking up what various variables and codes in a dataset refer to. With a data dictionary, a data analyst can look up how values were defined much like they would look up the definition of a word in the Oxford English Dictionary. For instance, San Francisco also publishes a dataset documenting [911 Calls for Service](https://data.sfgov.org/Public-Safety/Police-Department-Calls-for-Service/hz9m-tj6z), and in addition to the information available above, they provide an attachment to a document identifying what number codes and abbreviations in the dataset refer to.
+
+New Orleans also publishes a version of the [911 calls for service dataset](https://data.nola.gov/Public-Safety-and-Preparedness/Calls-for-Service-2019/qf6q-pp4b). They have created a separate [data dictionary document](https://data.nola.gov/api/views/qf6q-pp4b/files/a713b638-ce6e-45a4-a87d-b1fa1489da6a?download=true&filename=NOPD_-_Data_dictionary_for_Calls_For_Service_Open_Data.xlsx) for recording descriptive metadata about the dataset.
+
+###An example
+
+Data dictionaries are often very important for crime data analysis, as there are a number of caveats to what can be publicly reported with regards to crime.  
+
+Let's begin by downloading and importing NYPD Arrest Data (Year to Date) as a data frame. We are going to call it 'nyc_arrests'. 
+
+```{r}
+nyc_arrests <- read.csv("https://data.cityofnewyork.us/api/views/uip8-fykc/rows.csv", stringsAsFactors = FALSE)
+```
+
+NYC publishes a dataset documenting each arrest, the date it occurred, where it occurred, the crime suspected, and demographic details about the person arrested from the start of the year to the present. Let's take a look at the first few rows in the data frame:
+
+```{r}
+library(tidyverse)
+nyc_arrests %>% head()
+```
+
+However, for certain crimes, such as rape, sharing the location of where the crime occurred can put individuals at considerable risk. When we filter this data to only represent rape arrests that have occurred in Manhattan, and then map it, you will notice that there are very few locations represented on the graph - 17 at the writing of this lab. 
+
+To view this map, first install the package "leaflet" by pasting the following line into your console:
+
+install.packages("leaflet")
+
+Then run the code below:
+
+```{r}
+library(leaflet)
+
+nyc_arrests %>%
+  filter(OFNS_DESC == "RAPE" & ARREST_BORO == "M") %>%
+  leaflet() %>% 
+      addProviderTiles(providers$OpenStreetMap) %>%
+  addMarkers(~Longitude, ~Latitude)
+```
+
+Does this mean that only 17 arrests have been made for rapes in Manhattan since in the last year? It does not. From examining the data documentation, we learn that unlike other crimes in NYC, the location of all rape arrests are geocoded in the dataset to the address of the police station house of the police precinct where the rape occurred. This is to protect the privacy and anonymity of the victim.
+
+Some data dictionaries are very robust, detailing not only what each column refers to, but also the expected type of data in that column, every value that can appear in that column, where data might be missing in that column and why, and information about how the values in that column were generated. Other data dictionaries include much less information, forcing a data analyst to make assumptions about what values mean. Sometimes, a data dictionary is easily accessible with a dataset. However, sometimes, it can be much harder to find descriptive metadata - at times because it is buried within complicated user interfaces, and at other times, because it has not been created at all.
+
+In an ideal world, we would have rich metadata for every dataset published on an open government data portal. Unfortunately, this is rarely the case. The robustness of the data documentation, along with its ease of accessibility, can indicate the extent to which data publishers have prioritized responsible stewardship of the data. It can also indicate the human, financial, and technical resources various governments have available for data management and stewardship. 
+
+Notably, without descriptive metadata, it is much more likely that we will make poor assumptions about what certain terms mean in the data. If you ever find yourself in a situation where you don't know what a term in an open government dataset means, this is where administrative metadata can be important. Before drawing conclusions from the data, you should contact the designated contact person with a detailed message explaining points of confusion in the data. (You may also want to encourage them to document their response in a data dictionary!). 
+
+### Dataset Hopping 
+
+At this point in the quarter, you should begin to search for open government or academic datasets related to your chosen topic. You will **not** be working with all these datasets. For this lab, you will only be listing them. After you submit lab 2 via Canvas, I will review it and give you thumbs up on the datasets that you could examine throughout the quarter. 
+
+I have uploaded to Canvas a chapter from David Herzog's book "Data literacy: a user's guide" which guides you on how to search for data online.  I've also listed some useful datasets on the .Rmd file "Information_datasets", which you will find in the "datasets" folder.
+
+
+### Data Dictionary for Dataset Hopping Chart
+
+Before you submit this lab, you should complete the following table, listing and describing the dataset(s) that you may use for your research project. You learned about tables in your first lab. 
+Be sure to respond to each of the questions in the chart, using the '|' to separate cells per row. I've included a data dictionary below so that you may reference what each column means. 
+
+
+
+* Dataset?: What is the title of the dataset?
+* Found?: Where did you find it? (Provide a link.)
+* Formats?: In what formats is it available for download?
+* DD?: Is there a data dictionary or data documentation available for download?
+* Timespan?: What range of time does it cover?
+* Geography? What geographic range does it cover? 
+* Row?: What does each row in the dataset represent?
+* Update?: How often is the dataset updated?
+* Source?: What organization created this dataset? Is this organization reputable?
+
+### Dataset Hopping Chart
+
+In the first row, I've included an example of a dataset as an example. 
+
+Dataset? | Found? | Formats? | DD? | Timespan? | Geography? | Row? | Update? | Source?
+------- | ------- | ------- | ------- | ------- | ------- | ------- | -------
+2019 Novel Coronavirus COVID-19 | https://github.com/CSSEGISandData/COVID-19 | .csv | No | Jan 22, 2020 to Present  | Global by Province/Country | Cases per day by Province/Country | Daily | John's Hopkins CSSSE (reputable source)
+Fill | Fill | Fill | Fill | Fill | Fill | Fill | Fill | Fill
+Fill | Fill | Fill | Fill | Fill | Fill | Fill | Fill | Fill
+Fill | Fill | Fill | Fill | Fill | Fill | Fill | Fill | Fill
+
+
+

@@ -60,4 +60,49 @@ NOTE: This data does not present a full picture of 311 calls or service requests
 
 **URL:** https://data.cms.gov/Medicare-Inpatient/Inpatient-Prospective-Payment-System-IPPS-Provider/yekz-wzdr
 
+##6. 311 Service Requests from 2010 to Present
+TITLE	City Hall Electricity Usage
+TYPE	Tabular
+DESCRIPTION	
+Electric power load at City Hall (1 City Hall Square) measured every 15 minutes.
+
+PUBLISHER	Department of Innovation and Technology
+UPDATE FREQUENCY	Continuously updated
+TEMPORAL FROM	2016-10-27
+TEMPORAL NOTES	Data accrues every 15 minutes on internal systems. This dataset will be updated and published on this platform 6 times per 24 hour period with all new data since the last update.
+THEME	Environment
+CONTACT POINT	Energy Manager, Environment Department
+CONTACT POINT EMAIL	christopher.kramer@boston.gov
+CONTACT POINT PHONE NUMBER	(617) 635-2518
+LICENSE	Open Data Commons Public Domain Dedication and License (PDDL)
+
+**URL:** https://data.boston.gov/dataset/city-hall-electricity-usage
+
+## By themes
+
+### Healthcare
+
+* [https://data.medicaid.gov/](https://data.medicaid.gov/)
+* [https://data.medicare.gov/](https://data.medicare.gov/)
+* [https://data.healthcare.gov/](https://data.healthcare.gov/)
+* [https://data.chhs.ca.gov/](https://data.chhs.ca.gov/)
+
+### Food Security
+
+* [https://www.data.gov/](https://www.data.gov/)
+* [https://www.ers.usda.gov/data-products/](https://www.ers.usda.gov/data-products/)
+
+### Domestic Abuse
+
+* [https://www.data.gov/](https://www.data.gov/)
+* [https://www.bjs.gov/](https://www.bjs.gov/) (Note that the data here are not particularly easy to work with, but I will help to download them when the times comes.)
+
+### Income Security
+
+* [https://www.data.gov/](https://www.data.gov/)
+* [https://www.bls.gov/](https://www.bls.gov/) (Note that the data here are not particularly easy to work with, but I will help to download them when the times comes.)
+
+### Environment
+
+* [https://edg.epa.gov/metadata/catalog/main/home.page](https://edg.epa.gov/metadata/catalog/main/home.page)
 
