@@ -1,7 +1,7 @@
 ---
 title: "Lab 1 - Introduction to R"
-author: " "
-date: " "
+author: "include your name here "
+date: "include today's date here"
 output:
   pdf_document: default
   html_document:
@@ -345,7 +345,7 @@ Finally, on the top right hand side of your RStudio screen, you will see a tab c
 
 Before you submit this assignment, you should name it. Let's briefly practice some of the tricks that you have learned. First, create three variables: one that contains your name, another one with your email, and a last one with your age. You can do so by filling in the blanks ("_____") below. These variables should be of different classes, two of them will be "character" and one "numeric" (Hint: you can use the class() function to check the class of a variable). Finally, print the three variables.
 
-```{r eval=FALSE}
+```{r}
 
 name <- ________
 ________ <- ________
