@@ -3,9 +3,9 @@ title: "Lab 2 - Research Plan and Dataset Hopping"
 author: 'Name'
 date: 'Date'
 output:
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
 editor_options:
   chunk_output_type: inline
 utput:
@@ -31,7 +31,7 @@ In some sections of this document, you will need to fill in responses to questio
 
 We will begin by thinking about your possible research interests. Please respond to the questions below in full sentences. At this point, you do not need to do any external research on your topic. You are simply documenting what you currently know about a topic you are interested in. 
 
-In this class, we will focus on the social dimensions of data. I would prefer it if you selected a research topic centered on social realities-for example: environmental ollution in the bay area, health coverage access in California, or the effects of a policy in the US between 1990 and 2010.  If you are having trouble thinking about a topic, please do come to our lab session (wed. 14), where we will be able to discuss your own ideas.
+In this class, we will focus on the social dimensions of data. I would prefer it if you selected a research topic centered on social realities-for example: environmental pollution in the bay area, health coverage or access in California, or the effects of a policy in the US between 1990 and 2010.  If you are having trouble thinking about a topic, please do come to our lab session (wed. 14), where we will be able to discuss your own ideas.
 
 ### What topic am I investigating? 
 
