@@ -1,0 +1,110 @@
+---
+title: "Lab 8 - Summarizing Insights and Data Gaps"
+name: 
+date: 
+output: 
+  html_notebook:
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: '3'
+editor_options:
+  chunk_output_type: inline
+---
+
+## Instructions and Overview
+
+In this final lab (!), you will make a selection of your main findings across previous labs - both summarizing insights and critiquing knowledge gaps. You should write each section outlined below as if you were presenting this data to someone else. This will help you prepare your final presentation. What should others know about the data? How best can you summarize the diverse issues running through the data? You likely have written much of this content in other labs. The objective of this lab is to selectively pull from what you've written in other labs, draw new connections across your analyses, and summarize key issues so that you can present your data exploration publicly. 
+
+## Summarize Data Source
+
+Referring back to lab 3, in about 150 words, summarize your dataset and some of the things you learned about the historical and cultural context of your dataset. This section should include all of the following:
+
+1. What the data represents
+2. Who produced it
+3. Its observational unit
+4. Some variables that describe that observational unit
+5. A bit of its history/context from Lab 3
+
+```{r eval=FALSE}
+Fill your response here. 
+```
+
+## Summarize Questions for Analysis
+
+Referring back to labs 4-6, what were some of the questions you were posing as you approached your data exploration? What were you hoping to learn from your analysis that this particular dataset may have been able to help address? Indicate why you were asking these questions.
+
+```{r eval=FALSE}
+Fill your response here. 
+```
+
+## Summarize Insights
+
+In about 300 words, describe some conclusions that you were able to interpret *from your data analysis.* Each point you make in this section should do two things. First, you should reference specific empirical evidence that you were able to extrapolate from your data (through plots, charts, etc.), and second, you should *interpret* this evidence. Some additional criteria for this section:
+
+1. Be sure to contextualize your findings in the appropriate temporal and geographic context.
+2. Consider you sample. 
+3. Make a clear distinction between what the data empirically shows you and how you interpret the results. 
+4. Consider your data issues.
+
+```{r eval=FALSE}
+Fill your response here. 
+```
+
+## Characterize Knowledge Gaps
+
+Knowledge gaps refer to the things that we don't know due to the fact that certain data was not collected, was not collected accurately, was not collected in a format or categorization structure that allowed us to attend to an issue, or was not documented. When presenting data, knowledge gaps are often just as important to document as insights as they communicate the limits of our analysis, and possibilities for either future research or improvements to the data. I list five different types of knowledge gaps below, and pose questions we might ask for each. You should respond to *three* of the questions below in about 50-100 words each in relation to your data. 
+
+### Inaccurate Data
+
+Inaccurate data refers to data that is just incorrect. Typos and other data entry issues may constitute inaccurate data. For instance, sometimes addresses in a dataset may be misspelled, making it hard to geo-code those addresses. Or perhaps someone forgot to put a decimal point in a number increasing by the value by a power of 10. Inaccurate data can also refer to deliberate misreporting. Consider countries and states that are deliberately under-reporting Covid-19 case counts so that they can justify opening businesses sooner. 
+
+In what ways might the data in your dataset be inaccurate? Describe in specific detail how these inaccuracies might affect your data analysis. 
+
+```{r eval=FALSE}
+Fill your response here. 
+```
+
+### Incomplete Data
+
+Incomplete data refers to data that does not cover the scope of an issue that we need to address. Sometimes this is because specific values in the dataset are missing (or appearing as NAs). For instance, in the hospitals dataset there are a number of hospitals in which no BEDS variable was recorded. Incomplete data can also refer to sampling issues - or when the data that we have available does not represent enough of a population to draw conclusions. For instance, the cases data will only represent confirmed cases of Covid-19. It cannot represent those that have had the virus but have not been tested for it. 
+
+In what ways might the incompleteness of your data fail to address the extent of the issues you had hoped to examine in your analysis? Describe in specific detail how the data's incompleteness might affect your data analysis. Reference a specific analysis you've completed (either through transformation or plotting), and describe how this issue might impact how you interpret your data analysis.
+
+```{r eval=FALSE}
+Fill your response here. 
+```
+
+### Categorization Issues
+
+Categorization issues refer to instances where we cannot represent certain phenomena in our data because the data's categories are structured so as to exclude that issue from consideration. For instance, if the Johns Hopkins team is relying on internationally standardized country codes to report the data, where do cases reported in unrecognized states get reported? Are cases reported in Crimea being reported in the Ukraine, in Russia, or not at all?
+
+In what ways have categorization issues made it difficult to glean relevant insights from your dataset? Reference a specific analysis you've completed (either through transformation or plotting), and describe how this issue might impact how you interpret your data analysis.
+
+```{r eval=FALSE}
+Fill your response here. 
+```
+
+### Aggregation Issues
+
+Often, in published data, individual data points are aggregated and reported according to particular groupings (sometimes by geography, demographics, or time period, for example). Sometimes this is to protect the privacy of those represented in the data, and sometimes data is aggregated so as to summarize values at a scale in which it is easier to draw comparisons. For instance, the cases data does not report every single confirmed case. This would likely be a privacy concern, and would produce such a large dataset that it would be difficult to immediately draw comparisons between countries/dates. Instead, it aggregates the summary of total confirmed cases per day by country. Aggregating data like this can be important, but it can also hide certain issues that we would have only been able to see if the data was reported at an individual level. For instance, aggregating confirmed case counts by country, we cannot see anything about the demographic breakdown of individuals with confirmed cases in each country. 
+
+In what ways may the choice of scale into which your data was aggregated hide more localized or individualized issues? Describe in specific detail how these issues might affect your data analysis. 
+
+```{r eval=FALSE}
+Fill your response here. 
+```
+
+### Personal Knowledge Gaps
+
+As reflective data analysts, it is important to admit what we don't know about our topics that makes it more challenging to discern what the represents. 
+
+What don't you know about your data domain that has made it difficult to interpret the data? Reference a specific analysis you've completed (either through transformation or plotting), and describe how this issue might impact how you interpret your data analysis.
+
+```{r eval=FALSE}
+Fill your response here. 
+```
+
