@@ -1,0 +1,273 @@
+---
+title: "Lab 7 - Geographic and Temporal Context"
+name: 
+date: 
+output:
+  html_notebook:
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: '3'
+editor_options:
+  chunk_output_type: inline
+---
+
+## Instructions and Overview
+
+At this point in the quarter, we have produced a number of plots and calculated a number of measures in regards to our data. Now, we're going to explore in more depth how the stories the data tell change depending on where we look. 
+
+## Getting Started
+
+### Load the relevant libraries
+```{r}
+#Run
+library(tidyverse)
+library(lubridate)
+```
+
+### Import and clean example datasets 
+
+```{r}
+#Run
+hospitals <- read.csv("https://raw.githubusercontent.com/aponce278/STS-115-2021/main/datasets/Hospitals.csv", stringsAsFactors = FALSE)
+
+world_health_econ <- read.csv("https://raw.githubusercontent.com/aponce278/STS-115-2021/main/datasets/world_health_econ.csv", stringsAsFactors = FALSE)
+
+cases <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv", stringsAsFactors = FALSE)
+
+#Do not worry about this line of code for now. Since the cases data gets appended every day with a new column representing that day's case counts, if we want the total cases per country, we need to add up all of the previous day's counts into a new column. The column below does this for us. 
+cases <- 
+  cases %>% 
+  mutate(Total.Cases = 
+           cases %>% 
+           select(starts_with("X")) %>% 
+           rowSums()
+         ) %>%
+  select(Province.State, Country.Region, Total.Cases)
+
+hospitals$ZIP <- as.character(hospitals$ZIP)
+
+hospitals$ZIP <- str_pad(hospitals$ZIP, 5, pad = "0") 
+
+is.na(hospitals) <- hospitals == "NOT AVAILABLE"
+is.na(hospitals) <- hospitals == -999
+is.na(cases) <- cases == ""
+
+hospitals$SOURCEDATE <- ymd_hms(hospitals$SOURCEDATE)
+hospitals$VAL_DATE <- ymd_hms(hospitals$VAL_DATE)
+hospitals <- hospitals %>%
+  mutate(SOURCEDATE_YEAR = year(SOURCEDATE))
+```
+
+### Import and clean your dataset. 
+
+```{r}
+#Copy and paste relevant code from Labs 4 - 6 to import your data here. 
+
+```
+
+## Facets
+
+To get us started in putting our data into context, we are going to look at some of the plots we produced in previous labs grouped according to a categorical variable in our dataset. 
+
+By *faceting* plots, we split them into a series of panels each representing the grouped data associated with a particular value in a categorical variable. Let's start with an easy example from our hospitals data - faceting a bar plot of the number of hospitals that have a helipad by state. 
+
+We can facet a plot by adding: + facet_wrap(~VARIABLE_NAME) to the call. 
+
+```{r fig.height=5, fig.width=10}
+#Run. 
+#df %>% ggplot(aes(x = CATEGORICAL_VARIABLE)) + geom_bar() + facet_wrap(~CATEGORICAL_VARIABLE)
+
+#without facet_wrap()
+hospitals %>% 
+  ggplot(aes(x = HELIPAD)) + 
+  geom_bar() +
+  labs(title = "Number of Hospitals by Helipad Status", x ="Helipad", y = "Count of Hospitals" ) +
+  theme_bw()
+
+#with facet_wrap()
+hospitals %>% 
+  ggplot(aes(x = HELIPAD)) + 
+  geom_bar() +
+  facet_wrap(~STATE) +
+  labs(title = "Number of Hospitals by Helipad Status", x ="Helipad", y = "Count of Hospitals" ) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust=1, size = 6), 
+        axis.text.y = element_text(size = 6),
+        strip.text = element_text(size = 6)) 
+  
+```
+
+The first plot suggests that more hospitals have helipads than those that don't. Grouping this by state, however, we can see that in some states (like California and New York), more hospitals don't have helipads than those that do. Faceting can help us zoom into the data for more geographic specificity. 
+
+If we have qualified observational units in our dataset, faceting allows us to group data by one of the qualifying variables and display the data as a set of side-by-side plots.  For instance, remember how we have been filtering to the most recent year data was reported when plotting the world_health_econ data. Instead, we could facet() the data to demonstrate how different health ecnomics indicators change over time. 
+
+```{r fig.height=8, fig.width=10}
+#Run
+world_health_econ %>%
+  ggplot(aes(x = tot_health_sp_pp, y = life_exp, size = pop, col = continent)) + 
+  geom_point(shape = 21, stroke = 0.5) +
+  facet_wrap(~year) +
+  labs(title = "Relationship between Country Total Health Spending Per Person and Life Expectancy", x = "Total Health Spending Per Person", y = "Life Expectancy", size = "Population", col = "Continent") + # To add titles and labels
+  theme_bw() +
+  scale_size_continuous(range = c(1, 10), labels = scales::comma)
+```
+
+Copy and paste a plot from one of your previous labs that does not include a geographic or temporal variable on the x or y axis. Then copy it again and **facet it** by another variable. 
+
+```{r fig.height=5, fig.width=10}
+#Run.
+#df %>% ggplot(aes(x = CATEGORICAL_VARIABLE)) + geom_bar() + facet_wrap(~CATEGORICAL_VARIABLE)
+
+#Copy and paste a previoulsy created plot here. 
+
+#Copy that plot again and facet it by another variable. Adjust the theme as I have above to make your plot more legible.  
+```
+
+How do the stories that the two plots tell differ?
+
+```{r eval=FALSE}
+Fill your response here. 
+```
+
+## The Importance of Place and Time
+
+Time and place often matter a great deal in how we interpret data. I take these two examples from Prof. Poirier's class to demonstrate why:
+
+### Case Study 1: Calls to 311 during Hurricane Sandy
+
+311 is basically a customer service number for cities - a number for residents and visitors to report non-emergency issues, such as potholes and graffiti, to city officials. In most cities, every call to 311 gets aggregated in a database, and increasingly, city officials are performing data analysis on the calls to figure out where certain issues in the city are concentrated. If they receive a number of calls about missed garbage pick-ups in a certain community, they may divert attention and resources there for improved sanitation. Often this data is publicly accessible for communities to analyze. 
+
+When Hurricane Sandy hit NYC in 2012, the City leveraged data about calls New Yorkers had made to 311 to track where a number of different issues were occurring. I've included a sample of that data regarding calls about damaged trees and lack of heat and hot water in apartments in a dataset below.
+
+```{r}
+#Run. 
+library(scales)
+nyc311 <- read.csv("https://raw.githubusercontent.com/aponce278/STS-115-2021/main/datasets/311_before_2015.csv", stringsAsFactors = FALSE) 
+nyc311 %>% head(10)
+```
+
+Visualizing data about 311 calls in the three months following the disaster indeed showed a spike in complaints about issues like damaged trees and lack of heat in apartment buildings throughout the city. Leveraging this data, the city was able to position the devastation of the disaster as episodic - a result of natural forces beyond their control.
+
+```{r fig.height=5, fig.width=10}
+#Run. 
+nyc311 %>% 
+  filter(year(Created.Date) == 2012 & month(Created.Date) %in% c(7:11)) %>%
+  ggplot(aes(x = as.Date(Created.Date), group = 1)) +
+  geom_vline(xintercept=as.Date(c("2012-10-29")),linetype=4, colour="black") +
+  geom_line(stat="count") + 
+  facet_wrap(~Complaint.Type) + 
+  labs(x="Month", y="Count") +
+  scale_x_date() +
+  theme_bw() +
+  annotate(geom = "label", x = as.Date("2012-10-29"), y = 4000, label = "Hurricane Sandy", angle = 90)
+```
+
+However, social researchers have argued that it is not so simple to delimit the temporal boundaries of a disaster. While a natural event may happen on a particular day or span of days, their impact has a much longer timespan. Let's zoom out on the 311 data to look at these issues over the course of years versus these three months.  Complaints to 311 about damaged trees do spike following most major natural events. However, complaints about lack of heat in apartments spike every year in October ...because in New York, that's when it gets cold. By only looking at the data in months immediately after the disaster, the city could obscure the big picture - that poor New Yorkers face apartment negligence every year, not just immediately following a hurricane. The temporal context in which we analyze data matters a great deal for how we interpret it. 
+
+```{r fig.height=5, fig.width=10}
+#Run. 
+nyc311 %>% 
+  ggplot(aes(x=as.Date(Created.Date), col=as.factor(year(Created.Date)), group = year(Created.Date))) +
+  geom_vline(xintercept=as.Date(c("2010-03-12","2010-09-16","2011-08-28","2011-10-29","2012-10-29")),linetype=4, colour="black") +
+  geom_line(stat = "count") + 
+  facet_wrap(~Complaint.Type) +
+  labs(x="Month", col="Year") +
+  scale_x_date(breaks = "3 months", labels=date_format("%b-%y")) +
+  theme_bw() +
+  annotate(geom = "label", x = as.Date("2010-03-12"), y = 4000, label = "nor'easter", angle = 90) +
+  annotate(geom = "label", x = as.Date("2010-09-16"), y = 4000, label = "tornadoes", angle = 90) +
+  annotate(geom = "label", x = as.Date("2011-08-28"), y = 4000, label = "Hurricane Irene", angle = 90) +
+  annotate(geom = "label", x = as.Date("2011-10-29"), y = 4500, label = "Halloween nor'easter", angle = 90) +
+  annotate(geom = "label", x = as.Date("2012-10-29"), y = 4000, label = "Hurricane Sandy", angle = 90)
+  #nor'easter, tornadoes, Irene, Halloween nor'easter, Sandy
+```
+
+### Case Study 2: Geo-politics of Calls to 311 during Hurricane Sandy
+
+Now, let's consider not just *when* 311 calls were reported but also *where* they were reported. Because 311 calls are reported anonymously, we can't assess whether calls tend to come in disproportionately from certain demographics. However, there has been some research suggesting that we see a greater number of 311 calls being reported in more affluent communities that may have greater access to messaging about the 311 service, have greater access to the telephone or Internet infrastructure to report a call, and have more time to report issues. If we were to look at a map of the number of 311 calls regarding Damaged Trees the days following Hurricane Sandy's landfall, what sorts of geographic questions would we need to consider before assuming that these points indicated the neighborhoods in which there were the most damaged trees? 
+
+First, we would want to keep in mind that not everyone calls 311, and that it may be the case that certain communities tend to call 311 more than others. Next, we would want to consider which communities actually had capacity to call 311. Note in the map below that one area where fewer calls were reported was in Lower Manhattan - one of the areas of the City hardest hit by the storm. This also happens to be where the greatest power outages were documented following the Hurricane. If people can't charge their phones and computers, how are they going to report to 311?
+
+```{r}
+#Run.
+library(leaflet)
+
+nyc311 %>%
+  filter(Created.Date > "2012-10-28" & Created.Date < "2012-10-30" & Complaint.Type == "Damaged Tree") %>%
+  leaflet() %>% 
+  addProviderTiles(providers$OpenStreetMap) %>%
+  addMarkers(~Longitude, ~Latitude, clusterOptions = markerClusterOptions())
+```
+
+Why might it be important to consider the variable of place when interpreting your data?
+
+```{r eval=FALSE}
+Fill your response here.
+```
+
+Why might it be important to consider the variable of time when interpreting your data?
+
+```{r eval=FALSE}
+Fill your response here.
+```
+
+## Population
+
+When comparing certain phenomena across places - particuarly phenomena that are related to human activity - it is often important to consider how population can impact the numbers we see. For instance, when assessing the readiness of hospitals to take on an influx of Covid-19 patients across counties and/or states in the US in 2020, we need to not only consider the number of beds that were available, but also the population of the county and/or state. Population is one confounding variable, among many, that will mediate the relationship between hospital readiness for patient intake and the number of beds available. 
+
+In what ways might the distinct sizes or populations of a place impact how you compare issues across your data?
+
+```{r eval=FALSE}
+Fill your response here.
+```
+
+## Other Confounding Variables
+
+Sometimes, when we are analyzing data, it can seem as though there is a strong relationship between two variables in our dataset. Perhaps life expenctancy increases as spending on health increases, or perhaps the number of staff at a hospital increases as the number of beds at the hospital increases. We may assume that there is is a causal relationship between these two variables. *Confounding variables*, however, refer to a third phenomena that influences the relationship we see between two variables in a dataset. While it may appear as though two variables are highly correlated, a shared association with a confounding variable may be mediating that correlation. Before we make any claims with our data it is important that we consider such variables. 
+
+For instance, consider if were to look at data documenting the relationship between the number of Covid-19 cases each country has reported and the number of deaths it has reported. 
+
+```{r} 
+#Run.
+deaths <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv", stringsAsFactors = FALSE)
+
+is.na(deaths) <- deaths == ""
+
+deaths <- 
+  deaths %>% 
+  mutate(Total.Deaths = 
+           deaths %>% 
+           select(starts_with("X")) %>% 
+           rowSums()
+         ) %>%
+  select(Province.State, Country.Region, Total.Deaths) %>%
+  right_join(cases, by = c("Province.State", "Country.Region"))
+
+```
+
+
+```{r fig.height=5, fig.width=10}
+#Run.
+deaths %>% 
+  group_by(Country.Region) %>%
+  summarize(Total.Cases = sum(Total.Cases, na.rm = TRUE), Total.Deaths = sum(Total.Deaths, na.rm = TRUE)) %>%
+  ungroup() %>%
+  ggplot(aes(x = Total.Cases, y = Total.Deaths)) + 
+  geom_point(shape = 21, stroke = 1) +
+  labs(title = "Relationship between Total Covid-19 Deaths and Total Cases Globally", x = "Cases", y = "Deaths") + # To add titles and labels
+  theme_bw() +
+  scale_x_continuous(trans='log10', labels =  scales::comma) +
+  scale_y_continuous(trans='log10', labels = scales::comma)
+```
+
+Keep in mind that each dot above represents a country, and when we are comparing death rates across countries, there are number of confounding variables to consider:
+
+* What is the median age of the population in the country?
+* How advanced is the country's healthcare system?
+* To what extent do citizens in the country have access to healthcare?
+* How soon were social distancing policies put into place in the country?
+* How is the country documenting a Covid-19 related case/death?
