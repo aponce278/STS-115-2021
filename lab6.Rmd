@@ -36,7 +36,7 @@ library(lubridate)
 ```{r}
 #Run
 
-hospitals <- read.csv("datasets/Hospitals.csv", stringsAsFactors = FALSE)
+hospitals <- read.csv("https://raw.githubusercontent.com/aponce278/STS-115-2021/main/datasets/Hospitals.csv", stringsAsFactors = FALSE)
 
 world_health_econ <- read.csv("https://raw.githubusercontent.com/lindsaypoirier/STS-115/master/datasets/world_health_econ.csv", stringsAsFactors = FALSE)
 
@@ -74,15 +74,15 @@ hospitals$VAL_DATE <- ymd_hms(hospitals$VAL_DATE)
 
 ## Measures of Central Tendency
 
-A measure of central tendency is a single numeric quantity describing data by identifying a central position within it. It summarizes values within a set into a single value. We often refer to such a value as an average. 
+A measure of central tendency is a single numeric quantity describing data by identifying a central position within it. It summarizes values within a set into a single value. We often refer to such a value as an **average**. 
 
-At times, finding this measure can be quite useful. However, we also need to be careful when relying on measures of central tendency to communicate information about our data. This is because measures of central tendency can be *reductionist* - reducing a complex story told across data to a single value. They can hide meaningful outliers and erase the nuance of a complicated narrative. For instance, measures of central tendency related to wealth in the US are likely to hide the experiences of the most impoverished communities. Such a measure can be a weapon for stakeholders combating government policies to direct public resources towards communities in need. 
+At times, finding this measure can be quite useful. However, we also need to be careful when relying on measures of central tendency to communicate information about our data. This is because measures of central tendency can be *reductionist* - reducing a complex story told across data to a single value. They can hide meaningful outliers and erase the nuance of a complicated narrative. 
 
 Further, there are many pitfalls we need to steer clear of when assessing a measure of central tendency. Such a measure should only be taken to summarize the values across *similar observations.* If you have qualified units of observation, this will likely mean filtering your data to a set of similar values - to one year in the world_health_econ dataset for instance if you were looking to average populations across countries. 
 
-Often times it takes some discernment to decide whether calculating a measure of central tendency is appropriate. For instance, because we should only calculate measures of central tendency to summarize values across similar observations, it is not such a great idea to take an average of the total confirmed cases of Covid-19 across countries. We know that countries have different populations, transmission rates, timelines of transmission, policies, data collection practices, etc. So we can expect these numbers to differ for more reasons than simply because total cases are higher or lower in a given country. In averaging across them, we would be measuring the center of dissimilar observations. In some of your datasets, it may be inappropriate to calculate any measures of central tendency for this reason. 
+Often times it takes some discernment to decide whether calculating a measure of central tendency is appropriate. For instance, because we should only calculate measures of central tendency to summarize values across similar observations, it is not such a great idea to take an average of the total confirmed cases of Covid-19 across countries. We know that countries have different populations, transmission rates, timelines of transmission, policies, data collection practices, etc. So we can expect these numbers to differ for more reasons than simply because total cases are higher or lower in a given country. In averaging across them, we would be measuring the center of dissimilar observations.
 
-Now, let's say that we were looking to calculate the average number of beds in hospitals across the US. To do so, would it be appropriate to identify a central position within the BEDS variable in the dataset? Probably not. There are many different types of hospitals in the hospitals dataset, and we would expect these different hospitals to have different numbers of beds. For instance, we *know* from our research that Critical Access Hospitals are supposed to have 25 beds or fewer. In averaging across all of them, we would be measuring the center value of dissimilar observations. Before taking an average of BEDS, we would want to filter our data to a set of similar observations. We will do this below - filtering to open general acute care hospitals.
+Now, let's say that we were looking to calculate the average number of beds in hospitals across the US. To do so, would it be appropriate to identify a central position within the BEDS variable in the dataset? Probably not. There are many different types of hospitals in the hospitals dataset, and we would expect these different hospitals to have different numbers of beds. For instance, we *know* that Critical Access Hospitals are *supposed* to have 25 beds or fewer. In averaging across all of them, we would be measuring the center value of dissimilar observations. Before taking an average of BEDS, we would want to filter our data to a set of similar observations. We will do this below - filtering to open general acute care hospitals.
 
 ### Mean
 
@@ -112,7 +112,7 @@ hospitals %>%
 
 Notice how there's a considerable difference between the mean and the median value across both of these sets of calculations. So which should we rely on to summarize the central location in our dataset? 
 
-We want to keep in mind that because the mean is a model of the entire dataset, it is easily influenced by outliers in the dataset, as well as a skewed distribution. When the distribution of values in a set is normal, the mean and median of the dataset will be the same because the values on either side of the middle value will be symmetrical. In other words, the distribution will be balanced on either side of the median. Frequency plots give us a good indication of the distribution of values the dataset. Run the code to create the two frequency plots below.
+We want to keep in mind that because the mean is a model of the entire dataset, it is easily influenced by outliers in the dataset, as well as a skewed distribution. When the distribution of values in a set is normal, the mean and median of the dataset will be the same because the values on either side of the middle value will be symmetrical. In other words, the distribution will be balanced on either side of the median. Frequency plots give us a good indication of the distribution of values the dataset. Run the code to create the frequency plots below.
 
 ```{r fig.height=5, fig.width=10}
 #Run. 
@@ -163,13 +163,7 @@ paste("When we check if", avg_across_all_obs, "(the mean of BEDS across all obse
 
 This is because when we take an average of averages, we are ignoring a key confounding variable - the size of the denominator in each of the state averages. We know that there are different numbers of hospitals in each state. When we take the mean across all state averages, we basically ignore this variable - producing a different mean than if we were to calculate mean across all observations in the set. This can have dramatic consequences on the values reported in our data. 
 
-Please watch this short video on Simpson's Paradox to learn more about the importance of avoiding this pitfall:
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/ebEkn-BiW5k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-This is an issue we would need to keep in mind when calculating measures of central tendency in our world_health_econ dataset. The majority of the variables reported in the world_health_econ dataset are already averages - either averages across the population of the country or averages across the country's total spending on health. Because of this, it would be inappropriate to calculate measures of central tendency across these variables without knowing their denominators. For some of you, all of the numeric variables in your dataset are averages or proportions. If this is the case, I will encourage you to not calculate measures of central tendency and follow the alternative instructions instead. 
-
-> You might be thinking, "Well don't we have population as another variable in the dataset. Doesn't that tell us the denominator of some of the averages?" That is correct. However, looking at our data dictionary you will notice that the population variable in the dataset is derived from a different source than the health economics indicators. While we can expect these numbers to be in proximity, different organizations count the number of people in a country differently. This value might not accurately reflect the denominator of many of our health economics indicators. 
+This is an issue we would need to keep in mind when calculating measures of central tendency in our world_health_econ dataset. The majority of the variables reported in the world_health_econ dataset are already averages - either averages across the population of the country or averages across the country's total spending on health. Because of this, it would be inappropriate to calculate measures of central tendency across these variables without knowing their denominators. 
 
 ### Measures of Central Tendency in your Own Dataset
 
@@ -207,15 +201,9 @@ Characterize the extent to which the value you selected as a measure of central 
 Fill your response here. 
 ```
 
-If we were to use this single value to summarize this variable, what narratives would be left out? How does the complexity of the narratives in your data get reduced in calculating this value. 
-
-```{r eval=FALSE}
-Fill your response here. 
-```
-
 ## Maximum and Minimum
 
-Often times in data analysis, we are interested, not only in summarizing a central position amongst values, but also in determining the observations at the far ends of the spectrum. Which neighborhoods have the worst air quality? Which state has spent the most on social services? Which countries have had the most cases of Covid-19? To answer these questions, we will filter our dataset to the rows with the maximum value in a numeric variable or to the minimum value in a numeric variable. We do this below to determine the hospital in the US with the most and the least beds and the country with the most and least total Covid-19 cases. 
+Often times in data analysis, we are interested, not only in summarizing a central position amongst values, but also in determining the observations at the far ends of the spectrum. Which neighborhoods have the worst air quality? Which state has spent the most on social services? Which countries have had the most cases of Covid-19? To answer these questions, we will filter our dataset to the rows with the maximum value in a numeric variable or to the minimum value in a numeric variable. We do this below to determine the hospital in the US that in 2020 had the most and the least beds, and then the country with the most and least total Covid-19 cases (yesterday).
 
 ```{r}
 #Run.
@@ -253,8 +241,6 @@ cases %>%
 
 ### Determine the observations in your dataset with the maximum and minimum of a particular value. 
 
-#### Note: You only need to complete this section once if you calculated a measure of central tendency above. Otherwise, you should complete this section both times below. 
-
 > Note how you can select to only display certain variables by appending %>% select(VARIABLE_NAME1, VARIABLE_NAME2) to the end of your code.
 
 Be sure to filter your dataset to ensure that you are summarizing across similar observations (including if you have qualified units of observation).
@@ -271,19 +257,13 @@ What question might calculating this maximum and minimum help to address?
 Fill your response here. 
 ```
 
-Do you have a hypothesis as to why these particular observations have the max/min values?
+Conduct some Web research to find out more about why these particular observations may be leading or trailing in these numbers. For instance, for the calculations I performed above, I might search "UPMC Presbyterian hospital beds" or "Why is the US leading in Covid-19 cases?". Can you find any news articles, websites, blog posts, videos or papers further detailing your findings and putting them into social, political, economic, or historical context? Summarize what you find here. 
 
 ```{r eval=FALSE}
 Fill your response here. 
 ```
 
-Conduct some Web research to find out more about why these particular observations may be leading or trailing in these numbers. For instance, for the calculations I performed above, I might search "UPMC Presbyterian hospital beds" or "Why is the US leading in Covid-19 cases?". Can you find any news articles, websites, blog posts, videos or papers further detailing your findings and putting them into social, political, economic, or historical context? Summarize what you find here. Be sure to cite all sources. 
-
-```{r eval=FALSE}
-Fill your response here. 
-```
-
-#### Complete this section again if you did not calculate a measure of central tendency. 
+#### Complete this section *again* if you did *not* calculate a measure of central tendency. 
 
 > Note how you can select to only display certain variables by appending %>% select(VARIABLE_NAME1, VARIABLE_NAME2) to the end of your code.
 
@@ -338,11 +318,9 @@ hospitals %>%
   theme_bw()
 ```
 
-> Note how we can title a boxplot very similarly to how we title a frequency plot. Both show distributions of values. 
-
 We can see from this plot that the quartile deviation is much smaller than the range in our dataset. This suggests that centered values are more concentrated than the extremes. 
 
-When examining boxplots the outliers can often offer just as much information as the rest of the data. In previous sections, you found the observations with the minimum and maximum of a value. Boxplots tell us to what extent these observations stray from the norm. For instance, let's look at the outliers when we plot cases:
+When examining boxplots the outliers can often offer just as much information as the rest of the data. In previous sections, you found the observations with the minimum and maximum of a value. Boxplots tell us to what extent these observations stray from the norm. For instance, let's look at the outliers when we plot cases. Here we can see how significant the outliers are in this dataset:
 
 ```{r fig.height=5, fig.width=5}
 #Run.
@@ -359,8 +337,6 @@ cases %>%
   theme_bw()
 ```
 
-Here we can see how significant the outliers are in this dataset. The US, as of the writing of this lab, has more than double the total reported cases of any other country. Why the case counts for the US are deviate so far from the average is an important story - perhaps even more important to consider than the average. 
-
 ### Measures of Dispersion in Your Own Dataset
 
 #### Create a boxplot for one of the numeric variables in your dataset.
@@ -371,25 +347,7 @@ Be sure to filter your dataset to ensure that you are plotting across similar ob
 #Fill your plot here. Be sure to add a title and labels to your plot. 
 ```
 
-What question might this measure of dispersion help to address?
-
-```{r eval=FALSE}
-Fill your response here. 
-```
-
-What insight can you draw from the plot you created?
-
-```{r eval=FALSE}
-Fill your response here. 
-```
-
-What might the outliers in this boxplot indicate? For this specific boxplot, why might it be important to consider the outliers along with the more central measures?
-
-```{r eval=FALSE}
-Fill your response here. 
-```
-
-Now that you have a sense of the dispersion of some of the values in your data, why do you believe the values are as concentrated or dispersed as they are? What do the measures of dispersion you calculated say about social, political, or economic life in the area the data is representing? You may need to do some research to answer this question. For instance, noting the dispersion of beds in the hospitals data, I may do a Web search for "Why do some hospitals in the US have more beds than others?" and find [this](https://www.nytimes.com/interactive/2020/03/17/upshot/hospital-bed-shortages-coronavirus.html) article. Be sure to assess the reputability of your source and cite it in your response below. 
+What insight can you draw from the plot you created? What might the outliers in this boxplot indicate?
 
 ```{r eval=FALSE}
 Fill your response here. 
@@ -477,197 +435,6 @@ How does the story that this grouped boxplot tells differ from the story told by
 
 ```{r eval=FALSE}
 Fill your response here. 
-```
-
-## Continue your shiny app.
-
-Now we will incorporate some of the values we calculated and some of the plots we produced above into the Shiny App. In the server function, follow the instructions in the comments to create three value boxes in your app. You will also place two more plots in the app. Then in the ui function fill your title, and comment out the valueboxes you removed in the server fiction. Don't worry about styling the app.  That will be the focus of a later lab. **This is the first time I'm running this portion of the assignment in this class. I've put a lot of effort into making the sections below as clear and easy to follow as possible. However, if you get stuck anywhere, *please* don't hesitate to reach out to me.**
-
-```{r}
-ui <- dashboardPage(
-  
-  #REPLACE 'TITLE HERE' BELOW WITH YOUR OWN TITLE
-  dashboardHeader(title = "TITLE HERE"),
-  #REPLACE 'TITLE HERE' ABOVE WITH YOUR OWN TITLE
-  
-  dashboardSidebar(
-    #inputs will go here eventually but not now. 
-  ),
-
-  
-  #IF FILLING VALUE BOX WITH MEASURES OF CENTRAL TENDENCY, COMMENT OUT THE FOURTH THROUGH SIXTH INFOBOXOUTPUT LINES BELOW (with value4, value5, and value6). IF FILLING VALUE BOX WITH MAXIMUM AND MINIMUM VALUES, COMMENT OUT THE FIRST THROUGH THIRD INFOBOXOUTPUT LINES BELOW (with value1, value2, and value3). 
-  dashboardBody(
-      tags$head(tags$style(HTML('.content-wrapper { overflow: auto; } .info-box-text{ white-space: normal; }'))),
-      infoBoxOutput("value1", width = 4),
-      infoBoxOutput("value2", width = 4),
-      infoBoxOutput("value3", width = 4),
-      infoBoxOutput("value4", width = 4),
-      infoBoxOutput("value5", width = 4),
-      infoBoxOutput("value6", width = 4),
-      box(plotOutput("plot1")),
-      box(plotOutput("plot2")),
-      box(plotOutput("plot3")),
-      box(plotOutput("plot4"))
-  )
-)
-  
-
-```
-
-In the designated areas below, replace my code with your own code. To start, choose whether to display boxes indicating a measure of central tendency or a maximum and minimum value. Whichever you choose, be sure to remove the lines for the other by either deleting them from the code below, or commenting them out. You may use the same two plots that you used in the last lab for two of the plots below.
-
-```{r}
-server <- function(input, output, session) {
-  
-  
-  #IF FILLING VALUE BOX WITH MEASURES OF CENTRAL TENDENCY, COMPLETE THIS SECTION AND THEN REMOVE CALCULATIONS WHERE I INDICATE BELOW. IF FILLING VALUE BOX WITH MAXIMUM AND MINIMUM, REMOVE THIS SECTION AND THEN COMPLETE SECTION BELOW.
-  #======================== MEASURES OF CENTRAL TENDENCY VALUE BOXES ========================
-  output$value1 <- renderInfoBox({
-    quant_insight1 <-
-    #REPLACE BELOW WITH YOUR OWN CODE FOR CALCULATING MEAN OR MEDIAN
-    hospitals %>% 
-      filter(STATUS == "OPEN" & TYPE == "GENERAL ACUTE CARE") %>%
-      summarize(median_value = median(BEDS, na.rm = TRUE))
-    #REPLACE ABOVE WITH YOUR OWN CODE
-    
-    #REPLACE MY DESCRIPTION IN QUOTES BELOW WITH YOUR OWN DESCRIPTION
-    infoBox('Median number of beds in open general acute care hospitals', quant_insight1, icon = icon("stats", lib='glyphicon'), color = "light-blue")
-    #REPLACE MY DESCRIPTION IN QUOTES ABOVE WITH YOUR OWN DESCRIPTION
-  })
-  
-  output$value2 <- renderInfoBox({
-    quant_insight2 <- 
-    #REPLACE BELOW WITH YOUR OWN CODE FOR CALCULATING THE NUMBER OF OBSERVATIONS CONSIDERED (n())
-    hospitals %>% 
-      filter(STATUS == "OPEN" & TYPE == "GENERAL ACUTE CARE") %>%
-      summarize(total_values = n())
-    #REPLACE ABOVE WITH YOUR OWN CODE 
-    
-    #REPLACE MY DESCRIPTION IN QUOTES BELOW WITH YOUR OWN DESCRIPTION
-    infoBox('Number of open general acute care hospitals', quant_insight2, icon = icon("stats", lib='glyphicon'), color = "light-blue")
-    #REPLACE MY DESCRIPTION IN QUOTES ABOVE WITH YOUR OWN DESCRIPTION
-  })
-  
-  output$value3 <- renderInfoBox({
-    quant_insight3 <- 
-    #REPLACE BELOW WITH YOUR OWN CODE
-    hospitals %>% 
-      filter(STATUS == "OPEN" & TYPE == "GENERAL ACUTE CARE") %>%
-      summarize(percent_missing = sum(is.na(BEDS), na.rm = TRUE)/n()*100)
-    #REPLACE ABOVE WITH YOUR OWN CODE 
-    
-    #REPLACE MY DESCRIPTION IN QUOTES BELOW WITH YOUR OWN DESCRIPTION
-    infoBox('Percent open general acute care hospitals with missing beds value', round(quant_insight3, 2), icon = icon("stats", lib='glyphicon'), color = "light-blue")
-    #REPLACE MY DESCRIPTION IN QUOTES ABOVE WITH YOUR OWN DESCRIPTION
-  })
-  #======================== END MEASURES OF CENTRAL TENDENCY VALUE BOXES ========================
-  
-    #IF FILLING VALUE BOX WITH MAXIMUM AND MINIMUM, COMPLETE THIS SECTION AND THEN REMOVE CALCULATIONS WHERE I INDICATE ABOVE. IF FILLING VALUE BOX WITH MEASURES OF CENTRAL TENDENCY, REMOVE THIS SECTION AND THEN COMPLETE SECTION ABOVE.
-  #======================== MAXIMUM AND MINIMUM VALUE BOXES ========================
-    output$value4 <- renderInfoBox({
-    quant_insight4 <-
-    #REPLACE BELOW WITH YOUR OWN CODE TO FIND OBSERVATION WITH MAXIMUM VALUE. BE SURE TO *SELECT* A NAME VARIABLE FOR YOUR OBSERVATIONAL UNIT AND THE NUMERIC VARIABLE YOU ARE EXAMINING
-    hospitals %>% 
-      filter(STATUS == "OPEN" & TYPE == "GENERAL ACUTE CARE") %>% 
-      filter(BEDS == max(BEDS, na.rm = TRUE)) %>%
-      select(NAME, BEDS)
-    #REPLACE ABOVE WITH YOUR OWN CODE
-    
-    #REPLACE 'NAME' AND 'BEDS' BELOW WITH THE VARIABLES YOU LISTED IN SELECT FUNCTION ABOVE
-    quant_insight4 <- paste(paste(quant_insight4$NAME, collapse = ''), quant_insight4$BEDS[1], sep = ": ") #some of you may have more than one row with a maximum value. This concatentates them into a single string
-    
-    #REPLACE MY DESCRIPTION IN QUOTES BELOW WITH YOUR OWN DESCRIPTION
-    infoBox('Open general acute care hospital with maximum beds', quant_insight4, icon = icon("stats", lib='glyphicon'), color = "light-blue")
-    #REPLACE MY DESCRIPTION IN QUOTES ABOVE WITH YOUR OWN DESCRIPTION
-  })
-  
-  output$value5 <- renderInfoBox({
-    quant_insight5 <- 
-    #REPLACE BELOW WITH YOUR OWN CODE TO FIND OBSERVATION WITH MINIMUM VALUE. BE SURE TO *SELECT* A NAME VARIABLE FOR YOUR OBSERVATIONAL UNIT AND THE NUMERIC VARIABLE YOU ARE EXAMINING
-    hospitals %>% 
-      filter(STATUS == "OPEN" & TYPE == "GENERAL ACUTE CARE") %>% 
-      filter(BEDS == min(BEDS, na.rm = TRUE)) %>%
-      select(NAME, BEDS)
-    #REPLACE ABOVE WITH YOUR OWN CODE
-    
-    #REPLACE 'NAME' AND 'BEDS' BELOW WITH THE VARIABLES YOU LISTED IN SELECT FUNCTION ABOVE
-    quant_insight5 <- paste(paste(quant_insight5$NAME, collapse = ''), quant_insight5$BEDS[1], sep = ": ") #some of you may have more than one row with a minimum value. This concatentates them into a single string
-    
-    #REPLACE MY DESCRIPTION IN QUOTES BELOW WITH YOUR OWN DESCRIPTION
-    infoBox('Open general acute care hospital with minimum beds', quant_insight5, icon = icon("stats", lib='glyphicon'), color = "light-blue")
-    #REPLACE MY DESCRIPTION IN QUOTES ABOVE WITH YOUR OWN DESCRIPTION
-  })
-  
-  output$value6 <- renderInfoBox({
-    quant_insight6 <- 
-    #REPLACE BELOW WITH YOUR OWN CODE TO CALCULATE PERCENT MISSING VALUES FOR THE NUMERIC VARIABLE YOU FIND MAX AND MIN OF ABOVE. BE SURE TO APPLY SAME FILTER CONDITIONS AS YOU APPLY ABOVE.
-    hospitals %>% 
-      filter(STATUS == "OPEN" & TYPE == "GENERAL ACUTE CARE") %>%
-      summarize(percent_missing = sum(is.na(BEDS), na.rm = TRUE)/n()*100)
-    #REPLACE ABOVE WITH YOUR OWN CODE 
-    
-    #REPLACE MY DESCRIPTION IN QUOTES BELOW WITH YOUR OWN DESCRIPTION
-    infoBox('Percent open general acute care hospitals with missing beds value', round(quant_insight6, 2), icon = icon("stats", lib='glyphicon'), color = "light-blue")
-    #REPLACE MY DESCRIPTION IN QUOTES ABOVE WITH YOUR OWN DESCRIPTION
-  })
-  #======================== END MAXIMUM AND MINIMUM VALUE BOXES ========================
-  
-  output$plot1 <- renderPlot({
-    #REPLACE BELOW WITH YOUR OWN PLOT
-    hospitals %>% 
-      filter(STATUS == "OPEN") %>%
-      ggplot(aes(x = TYPE)) + 
-      geom_bar() +
-      labs(title = "Number of Hospitals in the US that are Open by Type", x = "Type", y = "Count of Hospitals") + 
-      theme_bw() +
-      theme(axis.text.x = element_text(angle = 90, hjust=1)) 
-    #REPLACE ABOVE WITH YOUR OWN PLOT 
-  })
-  
-  output$plot2 <- renderPlot({
-    #REPLACE BELOW WITH YOUR OWN PLOT
-    hospitals %>% 
-      filter(STATUS == "OPEN") %>%
-      ggplot(aes(x = TYPE)) + 
-      geom_bar() +
-      labs(title = "Number of Hospitals in the US that are Open by Type", x = "Type", y = "Count of Hospitals") + 
-      theme_bw() +
-      theme(axis.text.x = element_text(angle = 90, hjust=1)) 
-    #REPLACE ABOVE WITH YOUR OWN PLOT 
-  })
-  
-  output$plot3 <- renderPlot({
-    #REPLACE BELOW WITH YOUR OWN PLOT
-    hospitals %>%
-      filter(STATUS == "OPEN") %>%
-      ggplot(aes(x = TYPE, y = BEDS)) +
-      geom_boxplot() +
-      labs(title = "Distribution of Beds across Hospitals in the US that are Open by Type", x = "Type", Y = "Beds") +
-      theme_bw() +
-      theme(axis.text.x = element_text(angle = 90, hjust=1)) + #Changes x-axis tick labels 90 degrees
-      coord_flip() #Flips the x and y axis to make the data easier to read and compare
-    #REPLACE ABOVE WITH YOUR OWN PLOT  
-    
-  })
-  
-  output$plot4 <- renderPlot({
-    #REPLACE BELOW WITH YOUR OWN PLOT
-    hospitals %>%
-      filter(STATUS == "OPEN" & TYPE == "GENERAL ACUTE CARE") %>%
-      ggplot(aes(x = OWNER, y = BEDS)) +
-      geom_boxplot() +
-      labs(title = "Distribution of Beds across Hospitals in the US that are Open by Type", x = "OWNER", Y = "Beds") +
-      theme_bw() +
-      theme(axis.text.x = element_text(angle = 90, hjust=1)) + #Changes x-axis tick labels 90 degrees
-      coord_flip() #Flips the x and y axis to make the data easier to read and compare
-    #REPLACE ABOVE WITH YOUR OWN PLOT  
-  })
-}
-```
-
-
-```{r}
-shinyApp(ui, server)
 ```
 
 --- 
